@@ -19,7 +19,7 @@
                     <span class="show">show</span>
                 </div>
                 <div class="button1">
-                    <input type="submit" name="login" value="login">
+                    <input type="submit" value="login">
 
                 </div>
             </form>

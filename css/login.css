@@ -8,8 +8,11 @@
 
 
 .img{
-    background-image: url("lap.PNG");
-    height:650px;
+     background-image: url("lap.PNG"); 
+    background-color: aqua;
+    height:1000px;
+      background-position: center; /* Center the image */
+    background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
 }

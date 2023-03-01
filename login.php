@@ -26,7 +26,7 @@
             <div class="signup">
 
                 <p class="p1">Don't have an account?</p>
-                <a href="signup.html"> create one </a>
+                <a href="signup.php"> create one </a>
             </div>
         </div>
 

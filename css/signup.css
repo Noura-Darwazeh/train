@@ -1,0 +1,149 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+
+.img1{
+     background-image: url("lap.PNG"); 
+    background-color: aqua;
+    height:1000px;
+      background-position: center; /* Center the image */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+/* .img ::after{
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,255,0);
+} */
+.content1{
+     position: absolute; 
+    
+    /* background-color: aqua; */
+    top: 50%;
+    left: 50%;
+    text-align: center;
+
+    padding: 100px 32px;
+    width: 350px;
+     z-index: 10; 
+    background:rgba(255, 255, 255, 0.1);
+     transform: translate(-50% ,-50%); 
+}
+.content1 h2 {
+    color: black;
+    font-style: italic;
+
+    font-size: 30px;
+    margin:0 0 10px 0 ;
+
+}
+.username{
+    position: relative;
+    display: flex;
+    /* background-color: aqua; */
+    margin-bottom: 30px;
+    margin-left: 60px;
+    width: 100%;
+    height: 45px;
+    text-align: center;
+
+}
+.username input{
+    border-radius: 15px;
+    
+}
+.userpass{
+    position: relative;
+    display: flex;
+    text-align: center;
+    /* background-color: black; */
+    margin-bottom: 30px;
+    margin-left: 60px;
+    width: 100%;
+    height: 45px;
+    
+}
+.userpass input{
+    border-radius: 15px;
+    
+}
+
+
+.userphone{
+    position: relative;
+    display: flex;
+    text-align: center;
+    /* background-color: black; */
+    margin-bottom: 30px;
+    margin-left: 60px;
+    width: 100%;
+    height: 45px;
+    
+}
+.userphone input{
+    border-radius: 15px;
+    
+}
+
+
+
+
+
+.emailuser{
+    position: relative;
+    display: flex;
+    text-align: center;
+    /* background-color: black; */
+    margin-bottom: 30px;
+    margin-left: 60px;
+    width: 100%;
+    height: 45px;
+    
+}
+.emailuser input{
+    border-radius: 15px;
+    
+}
+.button2
+{
+/* background-color: aqua; */
+position: relative;
+    display: flex;
+    text-align: center;
+    /* background-color: black; */
+    margin-bottom: 30px;
+    margin-left: 60px;
+    width: 100%;
+    height: 45px;
+}
+.button2 input{
+    border-radius: 15px;
+    width: 70px;
+    margin-left: 45px;
+    color: black;
+    background-color: white;
+    font-size: 18px;
+    font-style: italic;
+        
+}
+.button1 input :hover{
+    background-color: aqua;
+        color: red;
+}
+
+
+
+/* a:visited
+{
+    color: blue;
+} */

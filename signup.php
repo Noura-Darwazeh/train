@@ -1,4 +1,5 @@
 <?php
+session_start();
 if(isset($_POST['submit'])){
 include 'conn-db.php';
  $name=filter_var($_POST['name'],FILTER_SANITIZE_STRING);
@@ -29,6 +30,14 @@ else if(strlen($email)>255)
     $errors[]="Very long!";
 
 }
+$x = "SELECT email from user WHERE email = '$email'";
+$q=mysqli_query($conn,$x);
+$data = $q->fetch_all();
+if($data)
+{
+    $errors[]="this email is exist!";
+
+}
 
 //phone number
 if(empty($phone)){
@@ -51,15 +60,26 @@ else if(strlen($password)<6)
 }
 if(empty($errors))
 {
+
     echo 'done';
+    $password = password_hash($password,PASSWORD_DEFAULT);
     $insert= "INSERT INTO user (name,email,phone,password) VALUES ('$name','$email','$phone','$password')";
-    //$conn= prepare($insert)-> execute();
     $qu=mysqli_query($conn,$insert);
+    $_POST['name'] ='';
+    $_POST['email'] ='';
+    $_POST['phone'] ='';
     if($qu)
     {
         echo 'insert done';
     }
-    else echo 'nono';
+    else echo 'no';
+    $_SESSION['user']=[
+    "name" => $name,
+    "email" =>$email,
+    "phone" =>$phone,
+     ];
+     header('location:profile.php');
+
 }
 else{
     var_dump($errors);

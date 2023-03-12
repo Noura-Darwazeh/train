@@ -1,11 +1,18 @@
 <?php
-    session_start();
-    if(!isset($_SESSION['name']) && !isset($_SESSION['email'])&& !isset($_SESSION['phone']))
-    {
-        header('location:login.php');
-        echo 'login';
-        exit(); 
-    }
+  session_start();
+if (isset($_SESSION['last_login_time'])) {
+    $last_login_time = $_SESSION['last_login_time'];
+} else {
+    $last_login_time = time();
+    $_SESSION['last_login_time'] = $last_login_time;
+}
+if (time() - $last_login_time > 86400) {
+    session_unset();
+    session_destroy();
+    $_SESSION = array();
+    header('location:login.php');
+
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

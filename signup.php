@@ -117,21 +117,24 @@ if(empty($errors))
     else 
      {
         echo "You can't upload files of this type";
+        "<script> alert('You can't upload files of this type!'); </script>";
+
      }
 }
 else {
     echo "You can't upload files of this type";
+    "<script> alert('You can't upload files of this type!'); </script>";
+
 }
  }
 else{
     var_dump($errors);
-    //ضيف
     $insertx= "INSERT INTO users (name,email,phone,password) VALUES ('$name','$email','$phone','$password')";
     $qux=mysqli_query($conn,$insertx);
     $_POST['name'] ='';
     $_POST['email'] ='';
     $_POST['phone'] ='';
-
+    header('location:login.php');
 }
 }
 }

@@ -7,21 +7,26 @@ $password=$_POST['password'];
 $errors=[];
 if(empty($email)){
     $errors[]="Email is required!";
+    "<script> alert('Email is required!'); </script>";
+
 }
 // pass
 if(empty($password)){
     $errors[]="Password is required!";
+    "<script> alert('Password is required!'); </script>";
+
+    
 }
 if(empty($errors))
 {
-    echo 'done';
+    
     $sel = "SELECT  * FROM users WHERE email='$email' and password='$password'";
     $qu=mysqli_query($conn,$sel);
     $row_count=mysqli_num_rows($qu);
     
     if($row_count==1)
     {
-        echo "1";
+        
         while($row=mysqli_fetch_array($qu))
         {
             echo 'ro';
@@ -40,7 +45,12 @@ if(empty($errors))
         header('location:profile.php');
         }
     }
-    else echo "no";
+    else 
+    {
+        echo "no";
+        "<script> alert('Incorrect password or email!'); </script>";
+
+    }
     
     }
 else{

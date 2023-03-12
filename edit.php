@@ -1,13 +1,20 @@
 <?php
+    
     session_start();
-    if(!isset($_SESSION['id'])&&!isset($_SESSION['name']) && !isset($_SESSION['email'])&& !isset($_SESSION['phone']) )
-    {
-        echo 'no session';
-        header('location:login.php');
-        exit(); 
-    }
-    else{
-        echo ' session';
+if (isset($_SESSION['last_login_time'])) {
+    $last_login_time = $_SESSION['last_login_time'];
+} else {
+    $last_login_time = time();
+    $_SESSION['last_login_time'] = $last_login_time;
+}
+if (time() - $last_login_time > 86400) {
+    session_unset();
+    session_destroy();
+    $_SESSION = array();
+    header('location:login.php');
+
+}
+        //echo ' session';
         include 'conn-db.php';
       
             echo
@@ -23,7 +30,7 @@
                  $namen=$_POST['name'];
                  $emailn=$_POST['email'];
                  $phonen=$_POST['phone'];
-                 $passwordn=$_POST['password'];
+                 
                  echo
                  $old_pp = $_POST['old_pp'];
                 
@@ -61,11 +68,15 @@
            }
            else {
                echo "You can't upload files of this type";
+               "<script> alert('You can't upload files of this type!'); </script>";
+
                
             }
        }
        else {
            echo "You can't upload files of this type";
+           "<script> alert('You can't upload files of this type!'); </script>";
+
        }
         }
        else{
@@ -76,7 +87,7 @@
           
 
          }
-    }
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">

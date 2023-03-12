@@ -6,10 +6,10 @@ $db='task';
 $conn= mysqli_connect($host,$user,$pass,$db);
 if($conn)
       {
-        echo 'yes';
+        echo '/yes/';
       }
       else{
-      echo 'no';
+      echo '/no/';
       
       }
 ?>

@@ -2,8 +2,8 @@
 session_start();
 if(isset($_POST['submit'])){
 include 'conn-db.php';
-$password=$_POST['password']; 
 $email=$_POST['email'];
+$password=$_POST['password']; 
 $errors=[];
 if(empty($email)){
     $errors[]="Email is required!";
@@ -15,21 +15,28 @@ if(empty($password)){
 if(empty($errors))
 {
     echo 'done';
-    $sel = "SELECT  * FROM user WHERE email='$email' and password='$password'";
+    $sel = "SELECT  * FROM users WHERE email='$email' and password='$password'";
     $qu=mysqli_query($conn,$sel);
     $row_count=mysqli_num_rows($qu);
     
     if($row_count==1)
     {
+        echo "1";
         while($row=mysqli_fetch_array($qu))
         {
             echo 'ro';
-        $_SESSION['user']=[
-            "name" => $row['name'],
-            "email" =>$email,
-            "phone" =>$row['phone'],
-                              ];
+       
+        echo
+        $_SESSION['name']=$row['name'];
+        echo
+        $_SESSION['phone']=$row['phone'];
+        echo
+        $_SESSION['pp']=$row['pp'];
         
+        echo
+        $_SESSION['email']=$row['email'];
+        echo
+        $_SESSION['id']=$row['id'];
         header('location:profile.php');
         }
     }
@@ -79,6 +86,3 @@ else{
     </body>
 </html>
 
-name : <?php echo $_SESSION['user']['name'] ?><br><br>
-        email : <?php echo $_SESSION['user']['email'] ?><br><br>
-        phone : <?php echo $_SESSION['user']['phone'] ?><br><br>

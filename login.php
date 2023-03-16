@@ -30,19 +30,30 @@ if(empty($errors))
         while($row=mysqli_fetch_array($qu))
         {
             echo 'ro';
+            if($row['verify_status']=="1")
+            {
        
-        echo
-        $_SESSION['name']=$row['name'];
-        echo
-        $_SESSION['phone']=$row['phone'];
-        echo
-        $_SESSION['pp']=$row['pp'];
+                echo
+                $_SESSION['name']=$row['name'];
+                echo
+                $_SESSION['phone']=$row['phone'];
+                echo
+                $_SESSION['pp']=$row['pp'];
         
-        echo
-        $_SESSION['email']=$row['email'];
-        echo
-        $_SESSION['id']=$row['id'];
-        header('location:profile.php');
+                echo
+                $_SESSION['email']=$row['email'];
+                echo
+                 $_SESSION['id']=$row['id'];
+        
+                //echo $row['verify_status'];
+                header('location:profile.php');
+            }
+            else
+            {
+               // echo "please verify your account to login";
+                echo "<script> alert('please verify your account to login'); </script>";
+
+            }
         }
     }
     else 

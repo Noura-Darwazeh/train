@@ -1,76 +1,71 @@
 <?php
     
     session_start();
-if (isset($_SESSION['last_login_time'])) {
-    $last_login_time = $_SESSION['last_login_time'];
-} else {
-    $last_login_time = time();
-    $_SESSION['last_login_time'] = $last_login_time;
-}
-if (time() - $last_login_time > 86400) {
-    session_unset();
-    session_destroy();
-    $_SESSION = array();
-    header('location:login.php');
+    if (isset($_SESSION['last_login_time'])) 
+    {
+        $last_login_time = $_SESSION['last_login_time'];
+    } else 
+    {
+        $last_login_time = time();
+        $_SESSION['last_login_time'] = $last_login_time;
+    }
+    if (time() - $last_login_time > 86400) 
+    {
+        session_unset();
+        session_destroy();
+        $_SESSION = array();
+        header('location:login.php');
 
-}
+    }
         //echo ' session';
-        include 'conn-db.php';
+include 'conn-db.php';
       
-            echo
-            $iddb=$_SESSION['id'];
-            $sqlu = "SELECT * FROM users WHERE id = $iddb";
-            $resultu = mysqli_query($conn, $sqlu);
-            $rowu = mysqli_fetch_assoc($resultu);
+echo
+$iddb=$_SESSION['id'];
+$sqlu = "SELECT * FROM users WHERE id = $iddb";
+$resultu = mysqli_query($conn, $sqlu);
+$rowu = mysqli_fetch_assoc($resultu);
             
-            if(isset($_POST['submit']))
+if(isset($_POST['submit']))
+{
+    $namen=$_POST['name'];
+    $emailn=$_POST['email'];
+    $phonen=$_POST['phone'];
+    echo
+    $old_pp = $_POST['old_pp'];
+    echo " /up/";
+            if (isset($_FILES['pp']['name']) AND !empty($_FILES['pp']['name'])) 
             {
-                
-                echo 'shabak';
-                 $namen=$_POST['name'];
-                 $emailn=$_POST['email'];
-                 $phonen=$_POST['phone'];
-                 
-                 echo
-                 $old_pp = $_POST['old_pp'];
-                
-            echo " /up/";
-            
-            if (isset($_FILES['pp']['name']) AND !empty($_FILES['pp']['name'])) {
                 echo "pp";
-                
                $img_name = $_FILES['pp']['name'];
                $tmp_name = $_FILES['pp']['tmp_name'];
                $error = $_FILES['pp']['error'];
-               
                if($error === 0){
                   $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
                   $img_ex_to_lc = strtolower($img_ex);
-       
                   $allowed_exs = array('jpg', 'jpeg', 'png');
-                  if(in_array($img_ex_to_lc, $allowed_exs)){
+                  if(in_array($img_ex_to_lc, $allowed_exs))
+                  {
                      $new_img_name = uniqid($namen, true).'.'.$img_ex_to_lc;
                      $img_upload_path = 'upload/'.$new_img_name;
-                     
-                    $old_pp_des = "upload/$old_pp";
-               if(unlink($old_pp_des)){
-               	 
-               	  move_uploaded_file($tmp_name, $img_upload_path);
-               }else {
+                     $old_pp_des = "upload/$old_pp";
+                    if(unlink($old_pp_des))
+                    {
+               	        move_uploaded_file($tmp_name, $img_upload_path);
+                    }
+                    else 
+                    {
                   
-               	  move_uploaded_file($tmp_name, $img_upload_path);
-               }
-                     
-                     
-                     $sqly = "UPDATE users SET name = '$namen',email = '$emailn' , phone = '$phonen',pp='$new_img_name' WHERE id = $iddb";
-                     mysqli_query($conn, $sqly);
+               	        move_uploaded_file($tmp_name, $img_upload_path);
+                    }
+                    $sqly = "UPDATE users SET name = '$namen',email = '$emailn' , phone = '$phonen',pp='$new_img_name' WHERE id = $iddb";
+                    mysqli_query($conn, $sqly);
         
-           }
-           else {
+                }
+           else 
+           {
                echo "You can't upload files of this type";
                "<script> alert('You can't upload files of this type!'); </script>";
-
-               
             }
        }
        else {
@@ -79,14 +74,12 @@ if (time() - $last_login_time > 86400) {
 
        }
         }
-       else{
+       else
+       {
         
         echo 'error';
        }
-            
-          
-
-         }
+}
     
 ?>
 <!DOCTYPE html>
